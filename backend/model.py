@@ -1,4 +1,5 @@
 from transformers import AutoModelForCausalLM, AutoTokenizer
+import os
 
 class Model:
     def __init__(self):
@@ -7,18 +8,23 @@ class Model:
         self.model = None
     
     def load_model(self, model_name: str):
-        saved_model_path = self.model_path + model_name
-        tokenizer = AutoTokenizer.from_pretrained(saved_model_path)
-        model = AutoModelForCausalLM.from_pretrained(saved_model_path)
-        
-        return tokenizer, model
+        try:
+            saved_model_path = os.path.join(self.model_path, model_name)
+            self.tokenizer = AutoTokenizer.from_pretrained(saved_model_path)
+            self.model = AutoModelForCausalLM.from_pretrained(saved_model_path)
+        except Exception as e:
+            print("Error loading model: ", e)
         
     def save_model(self, model_name: str):
-        tokenizer = AutoTokenizer.from_pretrained(model_name)
-        model = AutoModelForCausalLM.from_pretrained(model_name)
+        try:
+            tokenizer = AutoTokenizer.from_pretrained(model_name)
+            model = AutoModelForCausalLM.from_pretrained(model_name)
         
-        model.save_pretrained(self.model_path)
-        tokenizer.save_pretrained(self.model_path)
+            save_path = os.path.join(self.model_path, model_name)
+            model.save_pretrained(save_path)
+            tokenizer.save_pretrained(save_path)
+        except Exception as e:
+            print("Error saving model: ", e)
         
         
         
