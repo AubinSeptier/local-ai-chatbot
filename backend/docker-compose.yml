@@ -5,8 +5,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - "7860:7860"
-    environment:
-      - HUGGING_FACE_HUB_TOKEN=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
+    env_file:
+      - .env
     volumes:
-      - ./code:/code
+      - ./:/app
     user: "1000:1000"
