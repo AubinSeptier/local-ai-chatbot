@@ -7,10 +7,17 @@ class Model:
         self.model_path = "./models/"
         self.tokenizer = None
         self.model = None
+        
+    def get_tokenizer(self):
+        return self.tokenizer
+    
+    def get_model(self):
+        return self.model
     
     def load_model(self, model_name: str):
         try:
             print(f"Loading model '{model_name}'...")
+            model_name = model_name.replace("/", "_")
             saved_model_path = os.path.join(self.model_path, model_name)
             self.tokenizer = AutoTokenizer.from_pretrained(saved_model_path)
             self.model = AutoModelForCausalLM.from_pretrained(saved_model_path)
