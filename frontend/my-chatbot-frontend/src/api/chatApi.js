@@ -1,3 +1,4 @@
+// src/api/chatApi.js
 const API_BASE_URL = 'http://localhost:7860';
 
 export const chatApi = {
@@ -8,11 +9,19 @@ export const chatApi = {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include', // Important pour les cookies
         body: JSON.stringify({ 
           message,
           conversation_id: conversationId 
         }),
       });
+
+      if (!response.ok) {
+        if (response.status === 401) {
+          throw new Error('Unauthorized');
+        }
+        throw new Error('API Error');
+      }
 
       const reader = response.body.getReader();
       const decoder = new TextDecoder();
@@ -26,10 +35,8 @@ export const chatApi = {
         buffer += decoder.decode(value);
         const events = buffer.split('\n\n');
         
-        // Garder le dernier événement s'il est incomplet
         buffer = events[events.length - 1];
         
-        // Traiter tous les événements complets
         for (let i = 0; i < events.length - 1; i++) {
           const event = events[i].trim();
           if (event.startsWith('data: ')) {
@@ -38,7 +45,6 @@ export const chatApi = {
               if (data.token !== undefined && data.token !== '') {
                 onToken(data.token);
               }
-              // Ne pas traiter les messages vides
               if (data.error) {
                 onToken(`[Erreur] ${data.error}`);
               }
@@ -50,7 +56,7 @@ export const chatApi = {
       }
     } catch (error) {
       console.error('API Error:', error);
-      throw new Error('Failed to send message');
+      throw error;
     }
   }
 };
