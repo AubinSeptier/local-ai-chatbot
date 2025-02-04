@@ -89,10 +89,10 @@ def query_rag(query_text: str) -> str:
     # print(formatted_response)
 
 
-# if __name__ == "__main__":
-#     import argparse
-#     parser = argparse.ArgumentParser()
-#     parser.add_argument("query_text", type=str, help="The query text.")
-#     args = parser.parse_args()
-#     output = query_rag(args.query_text)
-#     print(output)
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("query_text", type=str, help="The query text.")
+    args = parser.parse_args()
+    output = query_rag(args.query_text)
+    print(output)

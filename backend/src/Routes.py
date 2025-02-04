@@ -5,6 +5,7 @@ import json
 import asyncio
 import logging
 import uuid
+from query_data import query_rag
 
 logger = logging.getLogger(__name__)
 
@@ -140,6 +141,11 @@ def register_routes(app, chat_api, db):
                     f"data: {json.dumps({'error': 'Message is required', 'continuing': False})}\n\n",
                     mimetype='text/event-stream'
                 )
+            
+            #  Get relevant context using RAG
+            retrieved_context = query_rag(message) or "" 
+            if retrieved_context:
+                message = f"Context: {retrieved_context}\n\nUser: {message}"
             
             def sync_stream():
                 """

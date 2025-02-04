@@ -7,6 +7,8 @@ from ChatModel import CustomHuggingFaceChatModel
 from typing import AsyncIterator
 import logging
 from Database import Database
+from query_data import query_rag  # Import the RAG function
+
 
 logger = logging.getLogger(__name__)
 
@@ -60,6 +62,13 @@ class Conversation:
             user_message = Message(role="user", content=message, timestamp=timestamp)
             self.messages.append(user_message)  # Garder l'ajout en mémoire
             # SUPPRIMER la ligne de sauvegarde ici
+            # Here wwe fetch relevant context using RAG
+            retrieved_context = query_rag(message)
+            if retrieved_context:
+                message = f"Context: {retrieved_context}\n\nUser: {message}"
+            else:
+                message = f"User: {message}"
+
 
             # Génération de la réponse
             current_response = ""
