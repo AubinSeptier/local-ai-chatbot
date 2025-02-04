@@ -1,11 +1,17 @@
-python-dotenv==1.0.1 # For reading environment variables stored in .env file
-langchain==0.2.2
-langchain-community==0.2.3
-langchain-openai==0.1.8 # For embeddings
-unstructured==0.14.4 # Document loading
-# onnxruntime==1.17.1 # chromadb dependency: on Mac use `conda install onnxruntime -c conda-forge`
-# For Windows users, install Microsoft Visual C++ Build Tools first
-# install onnxruntime before installing `chromadb`
-chromadb==0.5.0 # Vector storage
-openai==1.31.1 # For embeddings
-tiktoken==0.7.0  # For embeddings 
+python-dotenv==1.0.1  # For reading environment variables stored in .env file
+Flask==3.1.0  # Web framework (from base_front_back)
+langchain==0.3.17  # Keeping latest version
+langchain-community==0.3.15  # Keeping latest version
+langchain-openai==0.1.8  # For embeddings (from rag)
+langchain-huggingface==0.1.2  # From base_front_back
+langgraph==0.2.66  # From base_front_back
+transformers==4.48.0  # For NLP models
+unstructured==0.14.4  # Document loading (from rag)
+chromadb==0.5.0  # Vector storage (from rag)
+openai==1.31.1  # For embeddings (from rag)
+tiktoken==0.7.0  # Tokenization (from rag)
+torch==2.6.0  # Deep learning (from base_front_back)
+torchaudio==2.5.1  # Audio processing (from base_front_back)
+torchvision==0.20.1  # Image processing (from base_front_back)
+pydantic==2.10.6  # Data validation (from base_front_back)
+Werkzeug==3.1.3  # Flask dependency (from base_front_back)

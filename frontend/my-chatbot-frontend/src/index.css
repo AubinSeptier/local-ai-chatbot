@@ -1,0 +1,74 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "highlight.js/styles/github-dark.css";
+
+/* Vos styles personnalisés - version corrigée */
+.prose pre {
+    background-color: theme('colors.gray.100');
+    color: theme('colors.gray.800');
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid theme('colors.gray.200');
+  }
+  
+.dark .prose pre {
+background-color: theme('colors.gray.800');
+color: theme('colors.gray.100');
+border-color: theme('colors.gray.700');
+}
+
+.dark .hljs {
+background-color: theme('colors.gray.800');
+}
+
+
+.prose pre {
+overflow-x: auto;
+}
+
+.prose pre::-webkit-scrollbar {
+height: 6px;
+background: theme('colors.gray.100');
+}
+
+.prose pre::-webkit-scrollbar-thumb {
+background: theme('colors.gray.300');
+}
+
+.dark .prose pre::-webkit-scrollbar {
+background: theme('colors.gray.800');
+}
+
+.dark .prose pre::-webkit-scrollbar-thumb {
+background: theme('colors.gray.600');
+}
+
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 4px;
+}
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(75, 85, 99, 0.5);
+}
