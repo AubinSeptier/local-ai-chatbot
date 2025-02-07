@@ -53,7 +53,7 @@ def create_app():
 
     # Initialize Chat API
     chat_api = ChatAPI(
-        model_name="unsloth/Llama-3.2-3B-Instruct-bnb-4bit",
+        model_name="meta-llama/Llama-3.2-1B-Instruct",
         generation_config=generation_config,
         max_history=100,
         system_prompt="You are a helpful assistant.",
