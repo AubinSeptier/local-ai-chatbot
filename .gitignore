@@ -2,3 +2,7 @@
 .venv/  
 /backend/models/*
 !/backend/models/*.md
+/backend/__pycache__/
+__pycache__/
+/backend/.env
+.env
