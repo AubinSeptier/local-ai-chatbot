@@ -1,4 +1,3 @@
-// DarkModeToggle.jsx (nouveau composant)
 export default function DarkModeToggle({ darkMode, toggleDarkMode }) {
     return (
       <button

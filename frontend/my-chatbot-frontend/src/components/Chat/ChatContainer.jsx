@@ -20,8 +20,7 @@ function useAutoScroll(messages) {
 
 export default function ChatContainer({ onLogout, darkMode, toggleDarkMode }) {
   const [input, setInput] = useState('');
-  
-  // Initialiser useChat() EN PREMIER
+
   const { 
     messages, 
     isLoading, 
@@ -32,7 +31,6 @@ export default function ChatContainer({ onLogout, darkMode, toggleDarkMode }) {
     selectConversation 
   } = useChat();
 
-  // Maintenant messages est disponible
   const messagesEndRef = useAutoScroll(messages);
 
   const handleSubmit = async (e) => {
@@ -89,7 +87,7 @@ export default function ChatContainer({ onLogout, darkMode, toggleDarkMode }) {
           </div>
         </div>
 
-        {/* Input Area - Fixed at bottom */}
+        {/* Input Area */}
         <div className="sticky bottom-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
           <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-4">
             <div className="flex gap-2">

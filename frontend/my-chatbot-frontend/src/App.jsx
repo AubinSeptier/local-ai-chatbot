@@ -52,7 +52,7 @@ export default function App() {
 
   return (
     <div className={`h-screen ${darkMode ? 'dark' : ''}`}>
-      <div className="h-full flex flex-col bg-white dark:bg-gray-800"> {/* Modification ici */}
+      <div className="h-full flex flex-col bg-white dark:bg-gray-800">
         <ChatContainer onLogout={handleLogout} darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
       </div>
     </div>

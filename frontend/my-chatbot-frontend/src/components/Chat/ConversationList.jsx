@@ -1,5 +1,3 @@
-// src/components/Chat/ConversationList.jsx
-
 export default function ConversationList({ conversations, currentConversationId, onSelectConversation }) {
     return (
       <div className="w-64 h-full bg-gray-100 dark:bg-gray-800 p-4 overflow-y-auto overflow-x-hidden">

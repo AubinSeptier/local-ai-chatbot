@@ -70,7 +70,7 @@ export const useChat = () => {
         body: JSON.stringify({ first_message: firstMessage })
       });
       if (response.ok) {
-        await fetchConversations(); // Recharger la liste des conversations avec le nouveau titre
+        await fetchConversations();
       }
     } catch (error) {
       console.error('Failed to generate title:', error);
