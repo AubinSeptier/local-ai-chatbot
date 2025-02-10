@@ -8,10 +8,7 @@ scan throu the database and find the chunks of information that are closest in e
 """
 
 import argparse
-# from dataclasses import dataclass
 from langchain_community.vectorstores import Chroma
-from dotenv import load_dotenv
-load_dotenv()
 from langchain_openai import OpenAIEmbeddings
 import os 
 import logging
@@ -35,17 +32,6 @@ else:
     with open(DOCUMENT_PATH, "r", encoding="utf-8") as f:
         data = f.read()
         print(" File Preview:\n", data[:500])  # Print first 500 characters
-
-PROMPT_TEMPLATE = """
-Answer the question based only on the following context:
-
-{context}
-
----
-
-Answer the question based on the above context: {question}
-"""
-
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:

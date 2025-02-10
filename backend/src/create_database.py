@@ -5,10 +5,7 @@ from urllib.parse import urljoin, urlparse
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
-from dotenv import load_dotenv
 from langchain.schema import Document  
-
-load_dotenv()
 
 #CHECK LATER
 DOCUMENT_PATH = "./documents"
@@ -163,10 +160,13 @@ def create_chroma_db(processed_docs):
         return
 
     # Initialize OpenAI Embeddings (Fix deprecation warning)
-    embedding_function = OpenAIEmbeddings(openai_api_key=os.getenv("OPENAI_API_KEY"))
+    openai_api_key = os.getenv("OPENAI_API_KEY")
+    if not openai_api_key:
+        raise ValueError("OPENAI_API_KEY environment variable required")
+    embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
     # Store documents in ChromaDB
-    vectorstore = Chroma.from_documents(documents, embedding_function, persist_directory=CHROMA_PATH)
+    vectorstore = Chroma.from_documents(documents, embeddings, persist_directory=CHROMA_PATH)
 
     print(f" ChromaDB successfully created at {CHROMA_PATH} with {len(documents)} documents.")
 
