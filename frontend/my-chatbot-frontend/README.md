@@ -1,10 +1,11 @@
 # Frontend
 
+This folder contains the frontend of the project.
 This project used React.js with Vite and Tailwind CSS for the frontend. 
 
-## Contents 
+## Architecture and code structure 
 
-The frontend is composed of the main following components in the src folder:
+The frontend is composed of the main following components in the `src` folder :
 
 * `App.jsx` : Main component of the application.
 * `api/chatApi.js` : Manage the communication with the backend.

@@ -8,7 +8,7 @@
 
 ⚠️ **Prerequisites**: You need to have Docker installed on your machine to deploy the backend in a container. If you don't have it, you can download it [here](https://www.docker.com/products/docker-desktop/). You also need to have Node.js installed to run the frontend. If you don't have it, you can download it [here](https://nodejs.org/en/download/).
 
-Here's a step-by-step guide to installing the chatbot on your local machine.
+Here's a step-by-step guide to installing the chatbot on your local machine :
 
 1. Clone the repository to your local machine using the following command:
 
@@ -44,7 +44,7 @@ npm run dev
 
 ## Configuration
 
-Here some configuration options you can change in the `backend/src/app.py` file:
+Here are some configuration options you can change in the `backend/src/app.py` file :
 
 ```python	
     generation_config = {
