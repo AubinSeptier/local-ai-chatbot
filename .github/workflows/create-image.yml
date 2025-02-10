@@ -29,4 +29,4 @@ jobs:
           tags: aubinseptier/local-ai-chatbot:latest,aubinseptier/local-ai-chatbot:${{ github.sha }}
 
       - name: Image Creation Message
-        run: echo "Docker images (latest and commit SHA: ${{ github.sha }}) have been created successfully."
+        run: echo "Docker images (latest and commit SHA ${{ github.sha }}) have been created successfully."
