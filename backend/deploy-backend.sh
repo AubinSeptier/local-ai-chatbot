@@ -2,9 +2,27 @@
 
 if [ ! -f .env ]; then
     echo ".env not found. Creation of .env file..."
-    read -p "Please enter your HuggingFace Access Token: " user_token
-    echo "HF_TOKEN=$user_token" > .env
+    read -sp "Please enter your HuggingFace Access Token: " hf_token
+    echo
+    read -sp "Please enter your OpenAI API Key: " openai_token
+    echo
+    echo "HF_TOKEN=$hf_token" > .env
+    echo "OPENAI_API_KEY=$openai_token" >> .env
     echo ".env file created successfully."
+else
+    if ! grep -q "^HF_TOKEN=" .env; then
+        read -sp "Please enter your HuggingFace Access Token to add to .env file: " hf_token
+        echo
+        echo "HF_TOKEN=$hf_token" >> .env
+        echo "HF_TOKEN added to .env file."
+    fi
+
+    if ! grep -q "^OPENAI_API_KEY=" .env; then
+        read -sp "Please enter your OpenAI API Key to add to .env file: " openai_token
+        echo
+        echo "OPENAI_API_KEY=$openai_token" >> .env
+        echo "OPENAI_API_KEY added to .env file."
+    fi
 fi
 
 read -p "Do you want to deploy in Docker (Y/N): " deploy_choice
