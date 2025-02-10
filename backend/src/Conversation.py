@@ -5,6 +5,7 @@ from langchain_core.messages import HumanMessage, AIMessage
 from ChatModel import CustomHuggingFaceChatModel
 from Database import Database
 import logging
+from query_data import query_rag  # Import the RAG function
 
 logger = logging.getLogger(__name__)
 
@@ -71,48 +72,89 @@ class Conversation:
     async def send_message(self, message: str) -> AsyncIterator[str]:
         """
         Process user message and stream assistant response.
-        
-        Args:
-            message: User input text
-            
-        Yields:
-            str: Response tokens as they're generated
         """
         try:
-            # Add user message
-            user_msg = Message(role="user", content=message)
-            self.messages.append(user_msg)
+            # Store user message
+            timestamp = datetime.now()
+            user_message = Message(role="user", content=message, timestamp=timestamp)
+            self.messages.append(user_message)
 
-            # Generate and stream response
+            # Fetch relevant context using RAG
+            retrieved_context = query_rag(message)
+
+            # Debugging: Log retrieved content
+            logger.info(f"🔍 RAG Retrieved Context: {retrieved_context[:500] if retrieved_context else '❌ No relevant context found'}")
+
+            # Prevent chatbot from answering if no relevant document is found
+            if not retrieved_context:
+                yield "I'm sorry, but I couldn't find relevant information in the provided documents."
+                return
+
+            # Extract context and sources separately
+            if "**Sources**:" in retrieved_context:
+                context_text, sources_text = retrieved_context.split("**Sources**:", 1)
+                sources_text = sources_text.strip()
+            else:
+                context_text, sources_text = retrieved_context, ""
+
+            # Prepare messages with context and sources
+            formatted_messages = self._prepare_messages(f"Context: {context_text}", sources_text)
+
+            # Generate response based on retrieved context
             current_response = ""
-            async for chunk in self.model._astream(self._prepare_messages()):
+            async for chunk in self.model._astream(formatted_messages):
                 token = chunk.message.content
                 if token.strip():
                     current_response += token
                     yield token
 
-            # Add assistant response
+            # Ensure sources are included at the end of the response
+            if sources_text:
+                sources_text_formatted = f"\n\n**Sources:**\n{sources_text}"
+                yield sources_text_formatted
+                current_response += sources_text_formatted
+
+            # Store assistant response (including sources)
             assistant_msg = Message(role="assistant", content=current_response)
             self.messages.append(assistant_msg)
+
             self._trim_history()
 
         except Exception as e:
-            logger.error(f"Conversation error: {e}")
+            logger.error(f"🚨 Conversation error: {e}")
             raise
 
-    def _prepare_messages(self) -> List[HumanMessage]:
-        """Format messages for model input including system prompt."""
+
+
+
+
+    def _prepare_messages(self, formatted_message: str, sources_text: str = "") -> List[HumanMessage]:
+        """
+        Ensure the model uses retrieved context and explicitly includes sources.
+        """
         model_messages = []
+
+        # Ensure system prompt is added first
         if self.system_prompt:
             model_messages.append(HumanMessage(content=f"System: {self.system_prompt}"))
-        
+
+        # Ensure retrieved context is injected first
+        model_messages.append(HumanMessage(content=formatted_message))
+
+        # If sources are available, explicitly add them to the prompt
+        if sources_text.strip():
+            model_messages.append(HumanMessage(content=f"Sources: {sources_text}"))
+
+        # Append only the most recent messages to maintain conversation flow
         for msg in self.messages[-self.max_history * 2:]:
             if msg.role == "user":
-                model_messages.append(HumanMessage(content=msg.content))
+                model_messages.append(HumanMessage(content=f"User: {msg.content}"))
             else:
-                model_messages.append(AIMessage(content=msg.content))
-                
+                model_messages.append(AIMessage(content=f"Assistant: {msg.content}"))
+
         return model_messages
+
+
 
     def _trim_history(self):
         """Keep only recent messages up to max_history limit."""

@@ -14,3 +14,6 @@ flask-cors==4.0.0
 sentence-transformers==2.7.0
 accelerate==0.32.1
 bitsandbytes==0.43.1
+langchain-openai==0.3.4
+chromadb==0.6.3
+unstructured==0.16.20
