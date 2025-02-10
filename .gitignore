@@ -1,9 +1,6 @@
-/backend/.venv/
-.venv/  
+**/.venv/
+**/__pycache__/
+**/.env
 /backend/models/*
 !/backend/models/*.md
-/backend/__pycache__/
-__pycache__/
-/backend/.env
-.env
 /backend/instance/*
