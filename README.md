@@ -20,6 +20,7 @@ git clone https://github.com/AubinSeptier/local-ai-chatbot.git
 ℹ️ **Note**: To access to Llama models, you'll need to accept the terms and conditions on the specific model page on HuggingFace.
 
 3. Go to [openai.com](https://platform.openai.com/), create or log in to your account and generate an API Key (keep it for later).
+ℹ️ **Note**: An OpenAI API Key is required to use the RAG functionality in the chatbot. OpenAI API key is not free and you may need to pay for it.
 
 4. Open the `backend` folder in a terminal and launch the bash script `deploy-backend.sh`:
 
