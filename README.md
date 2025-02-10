@@ -16,27 +16,29 @@ Here's a step-by-step guide to installing the chatbot on your local machine.
 git clone https://github.com/AubinSeptier/local-ai-chatbot.git
 ```
 
-2. Go to [huggingface.co](https://huggingface.co), create an account and generate an access token (keep it for later).
+2. Go to [huggingface.co](https://huggingface.co), create or log in to your account and generate an access token (keep it for later).
 ℹ️ **Note**: To access to Llama models, you'll need to accept the terms and conditions on the specific model page on HuggingFace.
 
-3. Open the `backend` folder in a terminal and launch the bash script `deploy-backend.sh`:
+3. Go to [openai.com](https://platform.openai.com/), create or log in to your account and generate an API Key (keep it for later).
+
+4. Open the `backend` folder in a terminal and launch the bash script `deploy-backend.sh`:
 
 ```bash
 bash deploy-backend.sh
 ```
 
-4. Paste the access token you generated earlier when asked. Then choose if you want to deploy the chatbot in a Docker container or not (if you choose not to, you'll have to install the `requirements.txt` manually before).  
+5. Paste the HuggingFace access token and the OpenAI API Key you generated earlier when asked. Then choose if you want to deploy the chatbot in a Docker container or not (if you choose not to, you'll have to install the `requirements.txt` manually before).  
 Then, the script will build the container and launch the app via Docker (port: 7860) or directly on your machine.  
 ℹ️ **Note**: To configure Docker Dekstop on Windows (WSL2) to use GPU acceleration, you can follow the instructions [here](https://docs.docker.com/desktop/features/gpu/).
 
-5. Open the `frontend/my-chatbot-frontend` folder in another terminal and execute the following commands:
+6. Open the `frontend/my-chatbot-frontend` folder in another terminal and execute the following commands:
 
 ```bash
 npm upgrade 
 npm run dev
 ```
 
-6. Open your browser and go to `http://localhost:5173` to access the chatbot.
+7. Open your browser and go to `http://localhost:5173` to access the chatbot.
 
 
 ## Configuration
