@@ -2,6 +2,20 @@
 
 ## Introduction
 
+The aim of this project is to develop an **intelligent chatbot** for the **Université du Québec à Chicoutimi (UQAC)**, capable of answering employees' questions about the **university's management manual**. Using the **Retrieval Augmented Generation (RAG)** technique, the chatbot extracts and synthesizes relevant information from a large set of documents, including HTML pages and PDF files.
+
+## Technologies and tools
+
+The chatbot is built using the following technologies and tools :
+
+* [LangChain](https://www.langchain.com)
+* [HuggingFace Transformers](https://huggingface.co/docs/transformers/index)
+* [Models from HuggingFace](https://huggingface.co)
+* [OpenAI Embedding](https://python.langchain.com/docs/integrations/text_embedding/openai/)
+* [Chroma DB](https://www.trychroma.com)
+* [Flask](https://flask.palletsprojects.com/en/stable/)
+* [React](https://react.dev)
+* [SQLite](https://www.sqlite.org)
 
 
 ## Installation
