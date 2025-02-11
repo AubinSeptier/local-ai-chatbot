@@ -1,8 +1,8 @@
 from flask import Flask
 from flask_cors import CORS
-from ChatApi import ChatAPI
-from Routes import register_routes
-from Database import Database
+from chatApi import ChatAPI
+from routes import register_routes
+from database import Database
 import os
 import secrets
 import logging

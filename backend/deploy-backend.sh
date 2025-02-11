@@ -27,7 +27,7 @@ fi
 
 if [ -f /.dockerenv ]; then
     echo "Already in a Docker container. Launching app.py..."
-    python src/App.py
+    python src/app.py
     exit 0
 fi
 
@@ -51,5 +51,5 @@ if [ "$deploy_choice" = "y" ]; then
     fi
 elif [ "$deploy_choice" = "n" ]; then
     echo "Deployment without Docker: direct launch of App.py."
-    python src/App.py
+    python src/app.py
 fi

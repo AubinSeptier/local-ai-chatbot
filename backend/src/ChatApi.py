@@ -3,10 +3,10 @@ import uuid
 import logging
 from datetime import datetime
 from typing import Dict
-from Conversation import Conversation
-from ModelManager import ModelManager
-from ChatModel import CustomHuggingFaceChatModel
-from Database import Database
+from conversation import Conversation
+from modelManager import ModelManager
+from chatModel import CustomHuggingFaceChatModel
+from database import Database
 
 logger = logging.getLogger(__name__)
 
