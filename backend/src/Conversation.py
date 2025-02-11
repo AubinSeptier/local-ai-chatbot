@@ -1,11 +1,13 @@
+from langchain_core.messages import HumanMessage, AIMessage
+
 from dataclasses import dataclass, field
 from datetime import datetime
 from typing import List, AsyncIterator
-from langchain_core.messages import HumanMessage, AIMessage
+import logging
+
 from chatModel import CustomHuggingFaceChatModel
 from database import Database
-import logging
-from query_data import query_rag  # Import the RAG function
+from query_data import query_rag  
 
 logger = logging.getLogger(__name__)
 
