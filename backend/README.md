@@ -17,6 +17,8 @@ The backend is organized as follows :
 Once the backend is deployed, there are one new file and one new folder :
 
 * `instance/`: folder to store the SQLite database.
+* `chroma/`: folder to store the Chroma database.
+* `documents/`: folder to store the website content (text and PDF).
 * `.env`: file to store the environment variables (HuggingFace access token and OpenAI API key).
 
 ## Code structure
@@ -30,3 +32,5 @@ In the `src/` folder, the code is organized as follows :
 * `Database.py` : SQLite interface (conversation storage, etc.).
 * `ModelManager.py` : Download and load models locally.
 * `routes.py` : Management of Flask routes and frontend/backend communication.
+* `create_database.py` : Extracts, processes and indexes website content (text and PDF) in a vector database to feed the RAG.
+* `query_data.py` : Transforms a question into a vector search to extract relevant passages and their sources from the database.

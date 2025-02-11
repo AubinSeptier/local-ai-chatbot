@@ -1,11 +1,12 @@
-import os
-import requests
-from bs4 import BeautifulSoup
-from urllib.parse import urljoin, urlparse
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import OpenAIEmbeddings
-from langchain.schema import Document  
+from langchain.schema import Document 
+
+import os
+import requests
+from bs4 import BeautifulSoup
+from urllib.parse import urljoin, urlparse 
 
 #CHECK LATER
 DOCUMENT_PATH = "./documents"
@@ -135,7 +136,8 @@ def process_documents(docs):
 
     print(f" Processed documents saved to {output_file}")
 
-    return loaded_docs  # Return processed documents for indexing
+    # Return processed documents for indexing
+    return loaded_docs  
 
 def create_chroma_db(processed_docs):
     """Creates and stores processed documents in ChromaDB."""

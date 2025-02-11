@@ -2,6 +2,20 @@
 
 ## Introduction
 
+The aim of this project is to develop an **intelligent chatbot** for the **Université du Québec à Chicoutimi (UQAC)**, capable of answering employees' questions about the **university's management manual**. Using the **Retrieval Augmented Generation (RAG)** technique, the chatbot extracts and synthesizes relevant information from a large set of documents, including HTML pages and PDF files.
+
+## Technologies and tools
+
+The chatbot is built using the following technologies and tools :
+
+* [LangChain](https://www.langchain.com)
+* [HuggingFace Transformers](https://huggingface.co/docs/transformers/index)
+* [Models from HuggingFace](https://huggingface.co)
+* [OpenAI Embedding](https://python.langchain.com/docs/integrations/text_embedding/openai/)
+* [Chroma DB](https://www.trychroma.com)
+* [Flask](https://flask.palletsprojects.com/en/stable/)
+* [React](https://react.dev)
+* [SQLite](https://www.sqlite.org)
 
 
 ## Installation
@@ -16,10 +30,10 @@ Here's a step-by-step guide to installing the chatbot on your local machine :
 git clone https://github.com/AubinSeptier/local-ai-chatbot.git
 ```
 
-2. Go to [huggingface.co](https://huggingface.co), create or log in to your account and generate an access token (keep it for later).
+2. Go to [huggingface.co](https://huggingface.co), create or log in to your account and generate an access token (keep it for later).  
 ℹ️ **Note**: To access to Llama models, you'll need to accept the terms and conditions on the specific model page on HuggingFace.
 
-3. Go to [openai.com](https://platform.openai.com/), create or log in to your account and generate an API Key (keep it for later).
+3. Go to [openai.com](https://platform.openai.com/), create or log in to your account and generate an API Key (keep it for later).  
 ℹ️ **Note**: An OpenAI API Key is required to use the RAG functionality in the chatbot. OpenAI API key is not free and you may need to pay for it.
 
 4. Open the `backend` folder in a terminal and launch the bash script `deploy-backend.sh`:
@@ -40,6 +54,14 @@ npm run dev
 ```
 
 7. Open your browser and go to `http://localhost:5173` to access the chatbot.
+
+8. You can restart the server at any time by running the following command in the `backend` folder:
+
+```bash
+bash deploy-backend.sh
+```  
+
+ℹ️ **Note**: To restart it in the previously built Docker container, please run the script from the container.
 
 
 ## Configuration
@@ -71,4 +93,23 @@ Here are some configuration options you can change in the `backend/src/app.py` f
 
 * You can change the `system_prompt` to define the chatbot's role.
 
-* In the `backend/models` folder, you can see and manage all downloaded models available for the chatbot. 
+* In the `backend/models` folder, you can see and manage all downloaded models available for the chatbot.    
+
+ℹ️ **Note**: If you want to change the configuration or the model used by the chatbot, you'll need to restart the backend server to apply the changes. Don't need to rebuild the Docker container, just restart the server from the container or your machine depending if you used Docker or not.
+
+
+## What's next ?
+
+This project is still in development and many improvements can be made. Here are some ideas for future updates :
+
+* Download and load the desired LLM from the web interface.
+
+* Modify LLM configuration directly from the web interface.
+
+* Improving RAG performance.
+
+* To be able to choose whether or not to use RAG.
+
+* Retain the user's theme preference (Light/Dark).
+
+* Integrate query_data.py directly into the Conversation class.

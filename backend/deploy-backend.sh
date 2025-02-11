@@ -25,8 +25,21 @@ else
     fi
 fi
 
-read -p "Do you want to deploy in Docker (Y/N): " deploy_choice
-deploy_choice=$(echo "$deploy_choice" | tr '[:upper:]' '[:lower:]')
+if [ -f /.dockerenv ]; then
+    echo "Already in a Docker container. Launching app.py..."
+    python src/app.py
+    exit 0
+fi
+
+while true; do
+    read -p "Do you want to deploy in Docker (Y/N): " deploy_choice
+    deploy_choice=$(echo "$deploy_choice" | tr '[:upper:]' '[:lower:]')
+    if [ "$deploy_choice" = "y" ] || [ "$deploy_choice" = "n" ]; then
+        break
+    else
+        echo "Invalid choice. Please answer with Y or N."
+    fi
+done
 
 if [ "$deploy_choice" = "y" ]; then
     if command -v nvidia-smi &> /dev/null; then
@@ -38,8 +51,5 @@ if [ "$deploy_choice" = "y" ]; then
     fi
 elif [ "$deploy_choice" = "n" ]; then
     echo "Deployment without Docker: direct launch of App.py."
-    python src/App.py
-else
-    echo "Invalid choice. Please answer with Y or N."
-    exit 1
+    python src/app.py
 fi
