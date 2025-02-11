@@ -96,3 +96,20 @@ Here are some configuration options you can change in the `backend/src/app.py` f
 * In the `backend/models` folder, you can see and manage all downloaded models available for the chatbot.    
 
 ℹ️ **Note**: If you want to change the configuration or the model used by the chatbot, you'll need to restart the backend server to apply the changes. Don't need to rebuild the Docker container, just restart the server from the container or your machine depending if you used Docker or not.
+
+
+## What's next ?
+
+This project is still in development and many improvements can be made. Here are some ideas for future updates :
+
+* Download and load the desired LLM from the web interface.
+
+* Modify LLM configuration directly from the web interface.
+
+* Improving RAG performance.
+
+* To be able to choose whether or not to use RAG.
+
+* Retain the user's theme preference (Light/Dark).
+
+* Integrate query_data.py directly into the Conversation class.

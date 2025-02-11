@@ -70,8 +70,6 @@ def query_rag(query_text: str) -> str:
     context_text = "\n\n---\n\n".join(context_texts)
     sources_text = "\n".join([f"- [{source}]({source})" for source in sources])  
 
-
-
     return f"{context_text}\n\n**Sources**:\n{sources_text}"
 
 
