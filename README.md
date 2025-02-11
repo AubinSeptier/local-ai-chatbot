@@ -55,6 +55,14 @@ npm run dev
 
 7. Open your browser and go to `http://localhost:5173` to access the chatbot.
 
+8. You can restart the server at any time by running the following command in the `backend` folder:
+
+```bash
+bash deploy-backend.sh
+```  
+
+ℹ️ **Note**: To restart it in the previously built Docker container, please run the script from the container.
+
 
 ## Configuration
 
@@ -85,4 +93,6 @@ Here are some configuration options you can change in the `backend/src/app.py` f
 
 * You can change the `system_prompt` to define the chatbot's role.
 
-* In the `backend/models` folder, you can see and manage all downloaded models available for the chatbot.   
+* In the `backend/models` folder, you can see and manage all downloaded models available for the chatbot.    
+
+ℹ️ **Note**: If you want to change the configuration or the model used by the chatbot, you'll need to restart the backend server to apply the changes. Don't need to rebuild the Docker container, just restart the server from the container or your machine depending if you used Docker or not.
