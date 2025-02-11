@@ -25,6 +25,12 @@ else
     fi
 fi
 
+if [ -f /.dockerenv ]; then
+    echo "Already in a Docker container. Launching app.py..."
+    python src/App.py
+    exit 0
+fi
+
 read -p "Do you want to deploy in Docker (Y/N): " deploy_choice
 deploy_choice=$(echo "$deploy_choice" | tr '[:upper:]' '[:lower:]')
 
