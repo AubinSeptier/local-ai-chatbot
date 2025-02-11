@@ -112,6 +112,12 @@ This project is still in development and many improvements can be made. Here are
 
 * To be able to choose whether or not to use RAG.
 
+* Rephrase chatbot responses.
+
+* To be able to synthesize the conversation, both to push back the LLM context size limit and to give the user feedback on the conversation.  
+
 * Retain the user's theme preference (Light/Dark).
 
 * Integrate query_data.py directly into the Conversation class.
+
+* Improve and optimize parts of the code.
